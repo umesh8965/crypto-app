@@ -1,4 +1,4 @@
-import { Button, CircularProgress, createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
+import { CircularProgress, createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Line } from 'react-chartjs-2';
@@ -54,12 +54,13 @@ const darkTheme = createTheme({
 
 const CoinInfo = ({ coin }) => {
     const [historicData, setHistoricData] = useState([]);
-    const { currency, symbol } = CryptoState();
+    const { currency } = CryptoState();
     const [days, setDays] = useState(1);
     const classes = useStyles();
 
     useEffect(() => {
         getHistoricData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currency, days])
 
 
