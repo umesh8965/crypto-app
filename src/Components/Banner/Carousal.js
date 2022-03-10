@@ -37,6 +37,7 @@ const Carousal = () => {
 
     useEffect(() => {
         fetchAllTrandingCoins()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currency])
 
     const fetchAllTrandingCoins = async () => {

@@ -1,6 +1,6 @@
 import { LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CoinInfo from '../Components/CoinInfo';
 import { SingleCoin } from '../config/api';
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CoinPage = () => {
 
-  const {id} = useParams();
+  const { id } = useParams();
   const [getCoin, setGetCoin] = useState([]);
   const classes = useStyles();
 
@@ -67,9 +67,9 @@ const CoinPage = () => {
 
   useEffect(() => {
     getCoinsDetails()
-   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency])
-  
+
 
   const getCoinsDetails = async () => {
     const getSingleCoin = await axios.get(SingleCoin(id));
@@ -80,22 +80,22 @@ const CoinPage = () => {
   if (getCoin.length <= 0) {
     return <LinearProgress style={{ backgroundColor: "gold" }} />
   };
-  
+
   return (
     <div className={classes.container}>
       <div className={classes.sidebar}>
-      <img
+        <img
           src={getCoin?.image.large}
           alt={getCoin?.name}
           height="200"
           style={{ marginBottom: 20 }}
         />
-        
-         <Typography variant="h3" className={classes.heading}>
+
+        <Typography variant="h3" className={classes.heading}>
           {getCoin?.name}
         </Typography>
         <Typography variant="subtitle1" className={classes.description}>
-         
+
           {parse(getCoin?.description.en.split(". ")[0])}.
         </Typography>
 
@@ -154,11 +154,8 @@ const CoinPage = () => {
           </span>
         </div>
       </div>
-   <CoinInfo coin={getCoin} />
-      </div>
-   
-
-
+      <CoinInfo coin={getCoin} />
+    </div>
   )
 }
 
